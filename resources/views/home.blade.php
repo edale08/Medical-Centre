@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -15,6 +17,11 @@
                     @endif
 
                     You are logged in!
+                    <p>
+                      <a href="{{ route('doctors.index') }}" class="btn btn-outline-dark btn-sm">Doctors</a>
+                      <a href="{{ route('patients.index') }}" class="btn btn-outline-dark btn-sm">Patients</a>
+                      <a href="{{ route('visits.index') }}" class="btn btn-outline-dark btn-sm">Visits</a>
+                    </p>
                 </div>
             </div>
         </div>

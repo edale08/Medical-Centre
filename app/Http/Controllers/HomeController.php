@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Product;
-use App\Tag;
-use App\Category;
 
 class HomeController extends Controller
 {
@@ -17,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -27,18 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
-
-    public function welcome(){
-        $products = Product::all();
-        $categories = Category::all();
-        $tags = Tag::all();
-
-        return view('welcome')->with([
-            'products' => $products,
-            'categories' => $categories,
-            'tags' => $tags
+        return view('home')->with([
+            'title' => 'Home'
         ]);
     }
 }

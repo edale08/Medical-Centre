@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -37,29 +35,5 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    }
-
-    public function redirectTo()
-    {
-        $user = Auth::user();
-
-        if($user->hasRole('admin')) {
-            $url = '/admin/home';
-        }
-        else if($user->hasRole('artist')) {
-            $url = '/artist/home';
-        }
-        else if($user->hasRole('customer')) {
-            // if(session('route-checkout') == true) {
-            //     $url = '/cart/checkout';
-            // }
-            // else {
-                $url = '/customer/home';
-            // }
-        }
-        else {
-            throw Exception('Undefined user role');
-        }
-        return $url;
     }
 }
