@@ -48,6 +48,30 @@
                               @endif
                             </td>
                           </tr>
+                          <tr>
+                            <td>Insurance</td>
+                            <td>
+                              <fieldset class="form-group mb-0 pb-0">
+                                <div class="row">
+                                  <div class="col-sm-10">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="insurance" id="insuranceNo" value="0" onclick="myFunctionNo()" checked>
+                                      <label class="form-check-label" for="insuranceNo">
+                                        No
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="insurance" id="insuranceYes" value="1" onclick="myFunctionYes()">
+                                      <label class="form-check-label" for="insuranceYes">
+                                        Yes
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="errors text-danger"> {{ $errors->first('insurance') }} </div>
+                              </fieldset>
+                            </td>
+                          </tr>
                           <tr >
                               <td>Company</td>
                               <td><input id="insurance_company_check" class="form-control" type="text" name="insurance_company" value="{{ old('insurance_company') }}" disabled/>
@@ -58,20 +82,20 @@
                               <td><input id="policy_number_check" class="form-control" type="text" name="policy_number" value="{{ old('policy_number') }}" disabled/>
                               <div class="errors text-danger">{{ ($errors->has('policy_number')) ? $errors->first('policy_number') : "" }}</div></td>
                           </tr>
-
+                          
                           <script>
-                          function myFunction() {
-                            var x = document.getElementById("mySelect").value;
-
-                            if(x == 1){
-                                document.getElementById("insurance_company_check").removeAttribute("disabled");
-                                document.getElementById("policy_number_check").removeAttribute("disabled");
+                            //adds the disabled attribute to input fields if has no insurance
+                            function myFunctionNo() {
+                              var noInsurance = document.getElementById("insuranceNo").value;
+                              document.getElementById("insurance_company_check").setAttribute("disabled","");
+                              document.getElementById("policy_number_check").setAttribute("disabled","");
                             }
-                            else {
-                                document.getElementById("insurance_company_check").setAttribute("disabled","");
-                                document.getElementById("policy_number_check").setAttribute("disabled","");
+                            //removes the disabled attribute in input fields if has insurance
+                            function myFunctionYes() {
+                              var yesInsurance = document.getElementById("insuranceYes").value;
+                              document.getElementById("insurance_company_check").removeAttribute("disabled");
+                              document.getElementById("policy_number_check").removeAttribute("disabled");
                             }
-                          }
                           </script>
 
                           <tr>
