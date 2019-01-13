@@ -27,9 +27,18 @@
                           <tr>
                             <td>Time</td>
                             <td>
-                              <input class="form-control" type="time" name="time_visit" value="{{ old('time_visit') }}">
+                              <input class="form-control" type="text" name="time_visit" value="{{ old('time_visit') }}">
                               @if ($errors->has('time_visit'))
                                 <div class="errors text-danger"> {{ $errors->first('time_visit') }} </div>
+                              @endif
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Duration</td>
+                            <td>
+                              <input class="form-control" type="text" name="duration" value="{{ old('duration') }}">
+                              @if ($errors->has('duration'))
+                                <div class="errors text-danger"> {{ $errors->first('duration') }} </div>
                               @endif
                             </td>
                           </tr>
@@ -58,6 +67,15 @@
                               </select>
                               @if ($errors->has('doctor_id'))
                                 <div class="errors text-danger"> {{ $errors->first('doctor_id') }} </div>
+                              @endif
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Cost</td>
+                            <td>
+                              <input class="form-control" type="text" name="cost" value="{{ old('cost') }}">
+                              @if ($errors->has('cost'))
+                                <div class="errors text-danger"> {{ $errors->first('cost') }} </div>
                               @endif
                             </td>
                           </tr>

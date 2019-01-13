@@ -17,6 +17,33 @@
                       <table class="table">
                         <tbody>
                           <tr>
+                            <td>Date</td>
+                            <td>
+                              <input class="form-control" type="date" name="date_visit" value="{{ old('date_visit', $visit->date_visit) }}">
+                              @if ($errors->has('date_visit'))
+                                <div class="errors text-danger"> {{ $errors->first('date_visit') }} </div>
+                              @endif
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Time</td>
+                            <td>
+                              <input class="form-control" type="text" name="time_visit" value="{{ old('time_visit', $visit->time_visit) }}">
+                              @if ($errors->has('time_visit'))
+                                <div class="errors text-danger"> {{ $errors->first('time_visit') }} </div>
+                              @endif
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Duration</td>
+                            <td>
+                              <input class="form-control" type="text" name="duration" value="{{ old('duration', $visit->duration) }}">
+                              @if ($errors->has('duration'))
+                                <div class="errors text-danger"> {{ $errors->first('duration') }} </div>
+                              @endif
+                            </td>
+                          </tr>
+                          <tr>
                             <td>Doctor</td>
                             <td>
                               <select class="form-control" name="doctor_id">
@@ -45,23 +72,15 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Date</td>
+                            <td>Cost</td>
                             <td>
-                              <input class="form-control" type="date" name="date_visit" value="{{ old('date_visit', $visit->date_visit) }}">
-                              @if ($errors->has('date_visit'))
-                                <div class="errors text-danger"> {{ $errors->first('date_visit') }} </div>
+                              <input class="form-control" type="text" name="cost" value="{{ old('cost', $visit->cost) }}">
+                              @if ($errors->has('cost'))
+                                <div class="errors text-danger"> {{ $errors->first('cost') }} </div>
                               @endif
                             </td>
                           </tr>
-                          <tr>
-                            <td>Time</td>
-                            <td>
-                              <input class="form-control" type="time" name="time_visit" value="{{ old('time_visit', $visit->time_visit) }}">
-                              @if ($errors->has('time_visit'))
-                                <div class="errors text-danger"> {{ $errors->first('time_visit') }} </div>
-                              @endif
-                            </td>
-                          </tr>
+
                           <tr>
                             <td></td>
                             <td>

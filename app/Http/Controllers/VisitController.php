@@ -59,7 +59,9 @@ class VisitController extends Controller
             'doctor_id' => 'required|exists:doctors,id',
             'patient_id' => 'required|exists:patients,id',
             'date_visit' => 'required|date',
-            'time_visit' => 'required|regex:/^[0-9]{2}:[0-9]{2}$/'
+            'time_visit' => 'required|regex:/^[0-9]{2}:[0-9]{2}$/',
+            'duration' => 'required|numeric',
+            'cost' => 'required|numeric|min:0|max:999.99'
         ]);
 
         $validator->after(function ($validator) use ($request) {
@@ -77,7 +79,8 @@ class VisitController extends Controller
         $visit->patient_id = $request->input('patient_id');
         $visit->date_visit = $request->input('date_visit');
         $visit->time_visit = $request->input('time_visit');
-
+        $visit->duration = $request->input('duration');
+        $visit->cost = $request->input('cost');
         $visit->save();
 
         return redirect()->route('visits.index');
@@ -133,7 +136,9 @@ class VisitController extends Controller
             'doctor_id' => 'required|exists:doctors,id',
             'patient_id' => 'required|exists:patients,id',
             'date_visit' => 'required|date',
-            'time_visit' => 'required|regex:/^[0-9]{2}:[0-9]{2}:[0-9]{2}$/'
+            'time_visit' => 'required|regex:/^[0-9]{2}:[0-9]{2}$/',
+            'duration' => 'required|numeric',
+            'cost' => 'required|numeric|min:0|max:999.99'
         ]);
 
         $validator->after(function ($validator) use ($request) {
@@ -151,8 +156,10 @@ class VisitController extends Controller
         $visit->patient_id = $request->input('patient_id');
         $visit->date_visit = $request->input('date_visit');
         $visit->time_visit = $request->input('time_visit');
-
+        $visit->duration = $request->input('duration');
+        $visit->cost = $request->input('cost');
         $visit->save();
+
 
         return redirect()->route('visits.index');
     }
