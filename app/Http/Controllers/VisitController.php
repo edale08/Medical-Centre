@@ -17,11 +17,13 @@ class VisitController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     // we add middleware to prevent non-registered users to load visits pages
      public function __construct()
      {
          $this->middleware('auth');
      }
 
+     // returns the view visits page when the url /visits is requested
     public function index()
     {
         $visits = Visit::all();
@@ -36,6 +38,9 @@ class VisitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // when doctor create page is requested, this function gets executed and returns view visit create
+     // with doctors and patients data
     public function create()
     {
         $doctors = Doctor::all();
@@ -53,6 +58,9 @@ class VisitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     // after submitting form creating a visit, executes this function to run validations
+     // and create a new object and saves it to database
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -93,6 +101,9 @@ class VisitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if a visit page is requested, executes this function
+     // to return visit show view and details of visit
     public function show($id)
     {
         $visit = Visit::findOrFail($id);
@@ -108,6 +119,9 @@ class VisitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if visit edit is requested, executes this to find the specific visit
+     // and returns a view to visit edit with visit data
     public function edit($id)
     {
         $visit = Visit::findOrFail($id);
@@ -130,6 +144,9 @@ class VisitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if visit is edited and submitted, executes this function to validate new data
+     // and updates the data in database to new entries and redirects to visits page
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
@@ -170,6 +187,9 @@ class VisitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if visit is requested to be deleted, executes this function
+     // requiring a parameter to find the specific visit to delete
     public function destroy($id)
     {
         $visit = Visit::findOrFail($id);

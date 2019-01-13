@@ -11,6 +11,8 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+    // we add middleware to prevent non-registered users to load the user home page
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,6 +23,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // returns view home
     public function index()
     {
         return view('home')->with([

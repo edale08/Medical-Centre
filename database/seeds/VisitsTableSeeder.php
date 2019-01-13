@@ -12,6 +12,8 @@ class VisitsTableSeeder extends Seeder
      *
      * @return void
      */
+
+     // in this function, we create visit samples
     public function run()
     {
         $doctors = Doctor::all();

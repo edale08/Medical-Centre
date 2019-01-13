@@ -12,7 +12,7 @@ class PatientsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // here we create samples of patients
         $patient = new Patient();
         $patient->name = 'Anne';
         $patient->phone_number = '0871234567';
