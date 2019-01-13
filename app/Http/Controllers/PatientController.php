@@ -41,15 +41,27 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:100',
-            'phone_number' => 'required|max:10',
-            'postal_address' => 'required|max:100',
-            'email_address' => 'required|email',
-            'insurance' => 'required'
-            //'insurance_company' => 'required|max:100',
-            //'policy_number' => 'required|max:13'
-        ]);
+        if($request->input('insurance')==1) {
+            $request->validate([
+                'name' => 'required|max:100',
+                'phone_number' => 'required|max:10',
+                'postal_address' => 'required|max:100',
+                'email_address' => 'required|email',
+                'insurance' => 'required',
+                'insurance_company' => 'required|max:100',
+                'policy_number' => 'required|max:13'
+            ]);
+        }
+        else {
+            $request->validate([
+                'name' => 'required|max:100',
+                'phone_number' => 'required|max:10',
+                'postal_address' => 'required|max:100',
+                'email_address' => 'required|email',
+                'insurance' => 'required'
+            ]);
+        }
+
 
         $patient = new Patient();
         $patient->name = $request->input('name');

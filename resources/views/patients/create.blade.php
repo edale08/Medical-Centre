@@ -36,7 +36,7 @@
                               <td><input class="form-control" type="text" name="email_address" value="{{ old('email_address') }}" />
                               <div class="errors text-danger">{{ ($errors->has('email_address')) ? $errors->first('email_address') : "" }}</div></td>
                           </tr>
-                          <tr>
+                          <!-- <tr>
                             <td>Insurance</td>
                             <td>
                               <select id="mySelect" class="form-control" name="insurance" onchange="myFunction()">
@@ -47,7 +47,7 @@
                                 <div class="errors text-danger"> {{ $errors->first('insurance') }} </div>
                               @endif
                             </td>
-                          </tr>
+                          </tr> -->
                           <tr>
                             <td>Insurance</td>
                             <td>
@@ -55,13 +55,15 @@
                                 <div class="row">
                                   <div class="col-sm-10">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="insurance" id="insuranceNo" value="0" onclick="myFunctionNo()" checked>
+                                      <input class="form-check-input" type="radio" name="insurance" id="insuranceNo" value="0" onclick="myFunctionNo()"
+                                      {{ (old('insurance') == 0) ? "checked" : "" }} >
                                       <label class="form-check-label" for="insuranceNo">
                                         No
                                       </label>
                                     </div>
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="insurance" id="insuranceYes" value="1" onclick="myFunctionYes()">
+                                      <input class="form-check-input" type="radio" name="insurance" id="insuranceYes" value="1" onclick="myFunctionYes()"
+                                      {{ (old('insurance') == 1) ? "checked" : "" }} >
                                       <label class="form-check-label" for="insuranceYes">
                                         Yes
                                       </label>
@@ -74,15 +76,17 @@
                           </tr>
                           <tr >
                               <td>Company</td>
-                              <td><input id="insurance_company_check" class="form-control" type="text" name="insurance_company" value="{{ old('insurance_company') }}" disabled/>
+                              <td><input id="insurance_company_check" class="form-control" type="text" name="insurance_company" value="{{ old('insurance_company') }}"
+                                {{ (old('insurance') == 0) ? "disabled" : "" }}/>
                               <div class="errors text-danger">{{ ($errors->has('insurance_company')) ? $errors->first('insurance_company') : "" }}</div></td>
                           </tr>
                           <tr >
                               <td>Policy #</td>
-                              <td><input id="policy_number_check" class="form-control" type="text" name="policy_number" value="{{ old('policy_number') }}" disabled/>
+                              <td><input id="policy_number_check" class="form-control" type="text" name="policy_number" value="{{ old('policy_number') }}"
+                                {{ (old('insurance') == 0) ? "disabled" : "" }}/>
                               <div class="errors text-danger">{{ ($errors->has('policy_number')) ? $errors->first('policy_number') : "" }}</div></td>
                           </tr>
-                          
+
                           <script>
                             //adds the disabled attribute to input fields if has no insurance
                             function myFunctionNo() {
