@@ -14,6 +14,11 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+     
     public function index()
     {
         $patients = Patient::all();
@@ -85,9 +90,11 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient = Patient::findOrFail($id);
+        $visits = Visit::all();
 
         return view('patients.show')->with([
-            'patient' => $patient
+            'patient' => $patient,
+            'visits' => $visits
         ]);
     }
 
