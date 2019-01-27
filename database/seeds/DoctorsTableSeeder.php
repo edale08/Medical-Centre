@@ -12,7 +12,7 @@ class DoctorsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // here we create samples of doctors
         $doctor = new Doctor();
         $doctor->name = 'Dr. Apple';
         $doctor->postal_address = '7 St Vincents';

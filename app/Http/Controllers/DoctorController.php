@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+// imports Apps or classes
 use Illuminate\Http\Request;
 use App\Visit;
 use App\Doctor;
@@ -14,6 +15,14 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // we add middleware to prevent non-registered users to load doctors pages
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
+     // returns the view doctors page when the url /doctors is requested
     public function index()
     {
         $doctors = Doctor::all();
@@ -28,6 +37,8 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // when doctor create page is requested, this function gets executed and returns view doctor create
     public function create()
     {
         return view('doctors.create');
@@ -39,6 +50,9 @@ class DoctorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     // after submitting form creating a doctor, executes this function to run validations
+     // and create a new object and saves it to database
     public function store(Request $request)
     {
         $request->validate([
@@ -66,6 +80,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if a doctor page is requested, executes this function
+     // to return doctor show view and the doctor data and visits by patients
     public function show($id)
     {
         $doctor = Doctor::findOrFail($id);
@@ -83,6 +100,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if doctor edit is requested, executes this to find the specific doctor
+     // and returns a view to doctors edit with doctor data
     public function edit($id)
     {
         $doctor = Doctor::findOrFail($id);
@@ -99,6 +119,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if doctor is edited and submitted, executes this function to validate new data
+     // and updates the data in database to new entries and redirects to doctors page
     public function update(Request $request, $id)
     {
       $request->validate([
@@ -126,6 +149,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if doctor is requested to be deleted, executes this function
+     // requiring a parameter to find the specific doctor to delete
     public function destroy($id)
     {
         $doctor = Doctor::findOrFail($id);

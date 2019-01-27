@@ -18,7 +18,7 @@ class CreateVisitsTable extends Migration
             $table->integer('doctor_id')->unsigned();
             $table->integer('patient_id')->unsigned();
             $table->date('date_visit');
-            $table->time('time_visit');
+            $table->string('time_visit');
             $table->integer('duration');
             $table->decimal('cost', 6, 2);
             $table->timestamps();

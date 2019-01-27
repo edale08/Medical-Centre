@@ -65,7 +65,7 @@
                         @if (($visit->doctor_id)==($doctor->id))
                         <tr>
                           <td>{{ $visit->date_visit }}</td>
-                          <td>{{ substr(($visit->time_visit ),0,-3) }}</td>
+                          <td>{{ $visit->time_visit }}</td>
                           <td>{{ $visit->duration }}</td>
                           <td>{{ $visit->patient->name }}</td>
                           <td scope="row">{{ $visit->doctor->name }}</td>

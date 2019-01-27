@@ -14,6 +14,15 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // we add middleware to prevent non-registered users to load patients pages
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
+     // returns the view patients page when the url /patients is requested
+     // with all patients
     public function index()
     {
         $patients = Patient::all();
@@ -28,6 +37,8 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+      // when patient create page is requested, this function gets executed and returns view patient create
     public function create()
     {
         return view('patients.create');
@@ -39,6 +50,9 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     // after submitting form creating a patient, executes this function to run validations
+     // and create a new object and saves it to database
     public function store(Request $request)
     {
         if($request->input('insurance')==1) {
@@ -81,12 +95,17 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if a patient page is requested, executes this function
+     // to return patient show view and the patient data and their visits to doctors
     public function show($id)
     {
         $patient = Patient::findOrFail($id);
+        $visits = Visit::all();
 
         return view('patients.show')->with([
-            'patient' => $patient
+            'patient' => $patient,
+            'visits' => $visits
         ]);
     }
 
@@ -96,6 +115,9 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if patient edit is requested, executes this to find the specific patient
+     // and returns a view to patient edit with patient data
     public function edit($id)
     {
         $patient = Patient::findOrFail($id);
@@ -112,6 +134,9 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if patient is edited and submitted, executes this function to validate new data
+     // and updates the data in database to new entries and redirects to patients page
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -143,6 +168,9 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     // if patient is requested to be deleted, executes this function
+     // requiring a parameter to find the specific patient to delete
     public function destroy($id)
     {
         $patient = Patient::findOrFail($id);
