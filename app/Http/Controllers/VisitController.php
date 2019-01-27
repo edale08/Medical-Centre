@@ -75,7 +75,6 @@ class VisitController extends Controller
         $visit->save();
 
         return redirect()->route('visits.index');
-
     }
 
     /**
@@ -87,7 +86,6 @@ class VisitController extends Controller
     public function show($id)
     {
         $visit = Visit::findOrFail($id);
-
         return view('visits.show')->with([
             'visit' => $visit
         ]);

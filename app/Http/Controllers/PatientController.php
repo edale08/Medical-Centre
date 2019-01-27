@@ -61,8 +61,7 @@ class PatientController extends Controller
                 'insurance' => 'required'
             ]);
         }
-
-
+        
         $patient = new Patient();
         $patient->name = $request->input('name');
         $patient->phone_number = $request->input('phone_number');
